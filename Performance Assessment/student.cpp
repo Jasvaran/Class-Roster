@@ -8,7 +8,7 @@
 #include "student.hpp"
 #include <iostream>
 
-
+Student::Student() {};
 Student::Student (std::string studentID, std::string firstName,
                   std::string lastName, std::string emailAddress, int age, int* daysInCourse, DegreeProgram degreeProgram) {
     this->studentID = studentID;
@@ -46,15 +46,19 @@ int Student::GetAge() const {
     return this->age;
 }
 
-void Student::GetDaysInCourse() {
+std::string Student::GetDaysInCourse() {
+    std::string str;
     for (size_t i = 0; i < 3; ++i) {
-        if (i <= 2) {
-            std::cout << this->daysInCourse[i] << ",";
+        if (i <= 1) {
+            str += std::to_string(this->daysInCourse[i]) + ",";
         } else {
-            std::cout << this->daysInCourse[i];
+            str += std::to_string(this->daysInCourse[i]);
         }
     }
+    return str;
 }
+
+
 
 // Setters
 

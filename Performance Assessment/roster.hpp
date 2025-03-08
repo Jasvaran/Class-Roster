@@ -13,6 +13,8 @@
 class Roster {
 //    instance variables
     Student* classRosterArray[100];
+    int classRosterSize = 100;
+    int rosterCounter = 0;
 
     
 public:

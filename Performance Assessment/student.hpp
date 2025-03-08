@@ -23,6 +23,7 @@ class Student {
 public:
 //    member functions;
     // constructors
+    Student();
     Student(std::string studentID, std::string firstName, std::string lastName, std::string emailAddress, int age, int* daysInCourse, DegreeProgram degreeProgram);
     // Getters
     std::string GetStudentID() const;
@@ -30,7 +31,7 @@ public:
     std::string GetLastName() const;
     std::string GetEmailAddress() const;
     int GetAge() const;
-    void GetDaysInCourse();
+    std::string GetDaysInCourse();
     DegreeProgram GetDegreeProgram() const;
     
     // Setters

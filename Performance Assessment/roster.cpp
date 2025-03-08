@@ -67,15 +67,22 @@ void Roster::PopulateRoster(const std::string dataArr[], size_t size){
         size_t eighthCommaLoc = individualStudent.find(",", seventhCommaLoc + 1);
         daysInCourse3 = std::stoi(individualStudent.substr(seventhCommaLoc + 1, eighthCommaLoc - seventhCommaLoc - 1));
         
-        // FIX : STRING TO ENUM
+        // STRING TO ENUM
         std::string degreeString;
         degreeString = individualStudent.substr(eighthCommaLoc + 1);
         degreeProgram = strToEnum(degreeString);
-                
         
-        std::cout << individualStudent << "" << std::endl;
-        std::cout << degreeString << " " << degreeProgram << std::endl;
+        // create student objects
+        int* daysInCourseArr = new int[3];
+        daysInCourseArr[0] = daysInCourse1;
+        daysInCourseArr[1] = daysInCourse2;
+        daysInCourseArr[2] = daysInCourse3;
+        Student* newStudent = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourseArr, degreeProgram);
         
+//        ***Print student for testing purposes
+//        std::cout << newStudent->GetStudentID() << " " << newStudent->GetFirstName() << " " << newStudent->GetLastName() << " "
+//        << newStudent->GetEmailAddress() << " " << newStudent->GetAge() << " " << newStudent->GetDaysInCourse() << " " << newStudent->GetDegreeProgram() << std::endl;
+        this->classRosterArray[i] = newStudent;
     }
     
 }
