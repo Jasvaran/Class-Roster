@@ -26,6 +26,7 @@ public:
     void PrintAverageDaysInCourse(std::string userID);
     void PrintInvalidEmails();
     void PrintByDegreeProgram();
+    DegreeProgram strToEnum(std::string& str);
 };
 
 

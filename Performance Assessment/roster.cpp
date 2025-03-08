@@ -8,8 +8,27 @@
 #include "roster.hpp"
 #include <iostream>
 #include <string>
+#include <map>
+#include <stdexcept>
 
 Roster::Roster(){};
+
+DegreeProgram Roster::strToEnum(std::string& str){
+    std::map<std::string, DegreeProgram> degreeProgramMap = {
+        {"SECURITY", DegreeProgram::SECURITY},
+        {"NETWORK" , DegreeProgram::NETWORK},
+        {"SOFTWARE", DegreeProgram::SOFTWARE}
+    };
+    
+    auto it = degreeProgramMap.find(str);
+    if (it != degreeProgramMap.end()){
+        return it->second;
+    } else {
+        throw std::invalid_argument(str);
+    }
+    
+}
+
 void Roster::PopulateRoster(const std::string dataArr[], size_t size){
     
     
@@ -49,16 +68,13 @@ void Roster::PopulateRoster(const std::string dataArr[], size_t size){
         daysInCourse3 = std::stoi(individualStudent.substr(seventhCommaLoc + 1, eighthCommaLoc - seventhCommaLoc - 1));
         
         // FIX : STRING TO ENUM
-//        std::string degreeString;
-//        degreeString = individualStudent.substr(eighthCommaLoc + 1);
-        
-        
+        std::string degreeString;
+        degreeString = individualStudent.substr(eighthCommaLoc + 1);
+        degreeProgram = strToEnum(degreeString);
+                
         
         std::cout << individualStudent << "" << std::endl;
-        
-        
-    
-        
+        std::cout << degreeString << " " << degreeProgram << std::endl;
         
     }
     
