@@ -17,10 +17,13 @@ int main(int argc, const char * argv[]) {
     };
     
     int* arr = new int[3]{1, 2, 3};
+    int* newArr = new int[3]{3, 2, 1};
     DegreeProgram testDegree = DegreeProgram::SECURITY;
     Student* myStudent = new Student("A1","jesse", "mann", "jasvm@gmail.com", 31,arr,testDegree);
     
-    std::cout << myStudent->GetDaysInCourse();
+    myStudent->GetDaysInCourse();
+    myStudent->SetDaysInCourse(newArr);
+    myStudent->GetDaysInCourse();
     
     return 0;
 }

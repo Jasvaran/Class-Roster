@@ -46,6 +46,44 @@ int Student::GetAge() const {
     return this->age;
 }
 
-int* Student::GetDaysInCourse() {
-    return this->daysInCourse;
+void Student::GetDaysInCourse() {
+    for (size_t i = 0; i < 3; ++i) {
+        if (i <= 2) {
+            std::cout << this->daysInCourse[i] << ",";
+        } else {
+            std::cout << this->daysInCourse[i];
+        }
+    }
+}
+
+// Setters
+
+void Student::SetStudentID(std::string studentID){
+    this->studentID = studentID;
+}
+
+void Student::SetFirstName(std::string firstName) {
+    this->firstName = firstName;
+}
+
+void Student::SetLastName(std::string lastName){
+    this->lastName = lastName;
+}
+
+void Student::SetEmailAddress(std::string emailAddress){
+    this->emailAddress = emailAddress;
+}
+
+void Student::SetAge(int age){
+    this->age = age;
+}
+
+void Student::SetDaysInCourse(int* daysInCourse){
+    for (size_t i = 0; i < 3; ++i) {
+        this->daysInCourse[i] = daysInCourse[i];
+    }
+}
+
+void Student::SetDegreeProgram(DegreeProgram degreeProgram){
+    this->degreeProgram = degreeProgram;
 }

@@ -30,16 +30,20 @@ public:
     std::string GetLastName() const;
     std::string GetEmailAddress() const;
     int GetAge() const;
-    int* GetDaysInCourse();
+    void GetDaysInCourse();
     DegreeProgram GetDegreeProgram() const;
     
     // Setters
     void SetStudentID(std::string studentID);
     void SetFirstName(std::string firstName);
     void SetLastName(std::string lastName);
+    void SetEmailAddress(std::string emailAddress);
     void SetAge(int age);
-    void SetDaysInCourse(int daysInCourse[]);
+    void SetDaysInCourse(int* daysInCourse);
     void SetDegreeProgram(DegreeProgram degreeProgram);
+    
+    // Print
+    void Print() const;
     
     
 };
