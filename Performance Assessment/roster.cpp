@@ -81,18 +81,17 @@ void Roster::PopulateRoster(const std::string dataArr[], size_t size){
         daysInCourseArr[2] = daysInCourse3;
         Student* newStudent = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourseArr, degreeProgram);
         
-//        ***Print student for testing purposes
-//        std::cout << newStudent->GetStudentID() << " " << newStudent->GetFirstName() << " " << newStudent->GetLastName() << " "
-//        << newStudent->GetEmailAddress() << " " << newStudent->GetAge() << " " << newStudent->GetDaysInCourse() << " " << newStudent->GetDegreeProgram() << std::endl;
+
         this->classRosterArray[i] = newStudent;
         this->rosterCounter++;
-//        std::cout << rosterCounter << std::endl;
+
 
     }
     
 }
 
 void Roster::Add(std::string studentID, std::string firstName, std::string lastName, std::string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeProgram){
+    
     
     if (this->rosterCounter == this->classRosterSize) {
         std::cout << "resizing roster prior to adding" << std::endl;
@@ -110,8 +109,10 @@ void Roster::Add(std::string studentID, std::string firstName, std::string lastN
     
     // new student dynamically allocates memory and newStudent holds the memory address of the object
     Student* newStudent = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourseArr, degreeProgram);
+    
+    
+    
  
-//    // dereference the pointer and copy it to classRosterArray. the array now holds a local copy of the object.
     this->classRosterArray[rosterCounter] = newStudent;
     this->rosterCounter++;
     
@@ -141,6 +142,29 @@ void Roster::resizeRoster(){
     
     
 }
+
+void Roster::Remove(std::string studentID){
+    
+    // find the index of ID we want to remove
+    int indexOfID = 0;
+    
+    for (int i = 0; i < rosterCounter; ++i){
+        if (this->classRosterArray[i]->GetStudentID() == studentID){
+            indexOfID = i;
+        }
+    }
+    
+    // loop and remove the item and shift the array to the left.
+    if (indexOfID >= 0 && indexOfID < classRosterSize){
+        for (int i = indexOfID; i < rosterCounter - 1; ++i){
+            classRosterArray[i] = classRosterArray[i + 1];
+        }
+        this->rosterCounter--;
+    }
+    
+    
+}
+
 void Roster::PrintAll(){
     for (size_t i = 0; i < rosterCounter; ++i) {
         std::cout << this->classRosterArray[i]->GetFirstName() << std::endl;
