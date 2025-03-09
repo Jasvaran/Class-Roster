@@ -30,6 +30,8 @@ int main(int argc, const char * argv[]) {
 //    
     Roster* myRoster = new Roster();
     myRoster->PopulateRoster(studentData, studentDataSize);
+    myRoster->Add("A6", "Heidi", "Caro", "hcaro1995@gmail.com", 30, 32, 15, 42, DegreeProgram::SOFTWARE);
+    myRoster->PrintAll();
     
     
     return 0;

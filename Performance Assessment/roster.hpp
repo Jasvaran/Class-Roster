@@ -12,8 +12,8 @@
 #include "student.hpp"
 class Roster {
 //    instance variables
-    Student* classRosterArray[100];
-    int classRosterSize = 100;
+    Student** classRosterArray;
+    int classRosterSize = 5;
     int rosterCounter = 0;
 
     
@@ -22,7 +22,7 @@ public:
     Roster();
     ~Roster(){
         for (size_t i = 0; i < rosterCounter; ++i){
-            delete classRosterArray[i];
+            delete classRosterArray;
         }
     };
     
@@ -33,6 +33,7 @@ public:
     void PrintAverageDaysInCourse(std::string userID);
     void PrintInvalidEmails();
     void PrintByDegreeProgram();
+    void resizeRoster();
     DegreeProgram strToEnum(std::string& str);
 };
 
