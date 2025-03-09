@@ -7,6 +7,7 @@
 
 #include "student.hpp"
 #include <iostream>
+#include <iomanip>
 
 Student::Student() {};
 Student::Student (std::string studentID, std::string firstName,
@@ -38,15 +39,25 @@ std::string Student::GetEmailAddress() const {
     return this->emailAddress;
 }
 
-DegreeProgram Student::GetDegreeProgram() const {
-    return this->degreeProgram;
+std::string Student::GetDegreeProgram() const {
+    switch (this->degreeProgram) {
+        case DegreeProgram::SECURITY:
+            return "SECURITY";
+            break;
+        case DegreeProgram::NETWORK:
+            return "NETWORK";
+        case DegreeProgram::SOFTWARE:
+            return "SOFTWARE";
+        default:
+            break;
+    }
 }
 
 int Student::GetAge() const {
     return this->age;
 }
 
-std::string Student::GetDaysInCourse() {
+std::string Student::GetDaysInCourse() const {
     std::string str;
     for (size_t i = 0; i < 3; ++i) {
         if (i <= 1) {
@@ -90,4 +101,10 @@ void Student::SetDaysInCourse(int* daysInCourse){
 
 void Student::SetDegreeProgram(DegreeProgram degreeProgram){
     this->degreeProgram = degreeProgram;
+}
+
+void Student::Print() const {
+    std::cout << this->GetStudentID() << "\t" << this->GetFirstName() << "\t" << this->GetLastName() << "\t" <<
+    this->GetEmailAddress() << "\t" << this->GetAge() << "\t" << "{" << this->GetDaysInCourse() << "}" <<
+    "\t" << this->GetDegreeProgram() << std::endl;
 }

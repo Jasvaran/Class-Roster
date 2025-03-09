@@ -37,8 +37,8 @@ public:
     std::string GetLastName() const;
     std::string GetEmailAddress() const;
     int GetAge() const;
-    std::string GetDaysInCourse();
-    DegreeProgram GetDegreeProgram() const;
+    std::string GetDaysInCourse() const;
+    std::string GetDegreeProgram() const;
     
     // Setters
     void SetStudentID(std::string studentID);

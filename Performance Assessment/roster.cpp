@@ -167,6 +167,25 @@ void Roster::Remove(std::string studentID){
 
 void Roster::PrintAll(){
     for (size_t i = 0; i < rosterCounter; ++i) {
-        std::cout << this->classRosterArray[i]->GetFirstName() << std::endl;
+        this->classRosterArray[i]->Print();
     }
 }
+
+
+// ********** TO FIX:***********
+//void Roster::PrintAverageDaysInCourse(std::string studentID){
+//    int indexOfStudent;
+//    int sum = 0;
+//    double avg;
+//    for (int i = 0; i < this->rosterCounter; ++i) {
+//        if (this->classRosterArray[i]->GetStudentID() == studentID) {
+//            indexOfStudent = i;
+//        }
+//    }
+//    
+//    for (size_t i = 0; i < 3; ++i) {
+//        
+//    }
+    
+    
+//}
