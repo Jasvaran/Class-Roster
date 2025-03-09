@@ -16,7 +16,7 @@ class Student {
 //    instance variables;
     std::string studentID, firstName, lastName, emailAddress;
     int age;
-    int daysInCourse[3];
+    int* daysInCourse = new int[3];
     DegreeProgram degreeProgram;
     
     
@@ -25,6 +25,12 @@ public:
     // constructors
     Student();
     Student(std::string studentID, std::string firstName, std::string lastName, std::string emailAddress, int age, int* daysInCourse, DegreeProgram degreeProgram);
+    
+    // destructor
+    ~Student(){
+        delete[] daysInCourse;
+    };
+    
     // Getters
     std::string GetStudentID() const;
     std::string GetFirstName() const;

@@ -80,9 +80,22 @@ void Roster::PopulateRoster(const std::string dataArr[], size_t size){
         Student* newStudent = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourseArr, degreeProgram);
         
 //        ***Print student for testing purposes
-//        std::cout << newStudent->GetStudentID() << " " << newStudent->GetFirstName() << " " << newStudent->GetLastName() << " "
-//        << newStudent->GetEmailAddress() << " " << newStudent->GetAge() << " " << newStudent->GetDaysInCourse() << " " << newStudent->GetDegreeProgram() << std::endl;
+        std::cout << newStudent->GetStudentID() << " " << newStudent->GetFirstName() << " " << newStudent->GetLastName() << " "
+        << newStudent->GetEmailAddress() << " " << newStudent->GetAge() << " " << newStudent->GetDaysInCourse() << " " << newStudent->GetDegreeProgram() << std::endl;
         this->classRosterArray[i] = newStudent;
+        this->rosterCounter++;
     }
+    
+}
+
+void Roster::Add(std::string studentID, std::string firstName, std::string lastName, std::string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeProgram){
+    
+    int* daysInCourseArr = new int[3];
+    daysInCourseArr[0] = daysInCourse1;
+    daysInCourseArr[1] = daysInCourse2;
+    daysInCourseArr[2] = daysInCourse3;
+    Student* newStudent = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourseArr, degreeProgram);
+    
+    
     
 }

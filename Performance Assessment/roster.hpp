@@ -20,6 +20,11 @@ class Roster {
 public:
 //    member functions
     Roster();
+    ~Roster(){
+        for (size_t i = 0; i < rosterCounter; ++i){
+            delete classRosterArray[i];
+        }
+    };
     
     void PopulateRoster(const std::string dataArr[], size_t size);
     void Add(std::string studentID, std::string firstName, std::string lastName, std::string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeProgram);
