@@ -39,18 +39,23 @@ std::string Student::GetEmailAddress() const {
     return this->emailAddress;
 }
 
-std::string Student::GetDegreeProgram() const {
-    switch (this->degreeProgram) {
-        case DegreeProgram::SECURITY:
-            return "SECURITY";
-            break;
-        case DegreeProgram::NETWORK:
-            return "NETWORK";
-        case DegreeProgram::SOFTWARE:
-            return "SOFTWARE";
-        default:
-            break;
-    }
+DegreeProgram Student::GetDegreeProgram() const {
+
+    return this->degreeProgram;
+    
+    
+    
+    //    switch (this->degreeProgram) {
+//        case DegreeProgram::SECURITY:
+//            return "SECURITY";
+//            break;
+//        case DegreeProgram::NETWORK:
+//            return "NETWORK";
+//        case DegreeProgram::SOFTWARE:
+//            return "SOFTWARE";
+//        default:
+//            break;
+//    }
 }
 
 int Student::GetAge() const {

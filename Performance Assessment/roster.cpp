@@ -72,6 +72,8 @@ void Roster::PopulateRoster(const std::string dataArr[], size_t size){
         // STRING TO ENUM
         std::string degreeString;
         degreeString = individualStudent.substr(eighthCommaLoc + 1);
+        
+ 
         degreeProgram = strToEnum(degreeString);
         
         // create student objects
@@ -199,9 +201,33 @@ void Roster::PrintAverageDaysInCourse(std::string studentID){
     std::cout << avg;
 }
 
-//void Roster::PrintByDegreeProgram(DegreeProgram degreeProgram) {
-//    
-//    for (size_t i = 0; i < rosterCounter; ++i){
-//        if (this->classRosterArray[i]->GetDegreeProgram() == degreeProgram)
-//    }
-//}
+void Roster::PrintByDegreeProgram(DegreeProgram degreeProgram) {
+    
+    for (size_t i = 0; i < rosterCounter; ++i){
+        if (this->classRosterArray[i]->GetDegreeProgram() == degreeProgram){
+            classRosterArray[i]->Print();
+        }
+    }
+}
+
+void Roster::PrintInvalidEmails(){
+
+    std::string emailAddress;
+    std::string afterLastPeriod;
+    size_t periodLocation;
+    
+    for (size_t i = 0; i < rosterCounter; ++i){
+        emailAddress = classRosterArray[i]->GetEmailAddress();
+        if (emailAddress.find(" ") != std::string::npos){
+            std::cout << emailAddress << std::endl;
+            
+        }
+        if (emailAddress.find(".") == std::string::npos){
+            std::cout << emailAddress << std::endl;
+        }
+        if (emailAddress.find("@") == std::string::npos){
+            std::cout << emailAddress << std::endl;
+            
+        }
+    }
+}

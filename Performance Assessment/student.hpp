@@ -38,7 +38,7 @@ public:
     std::string GetEmailAddress() const;
     int GetAge() const;
     std::string GetDaysInCourse() const;
-    std::string GetDegreeProgram() const;
+    DegreeProgram GetDegreeProgram() const;
     int* GetDaysInCourseArr();
     
     // Setters
