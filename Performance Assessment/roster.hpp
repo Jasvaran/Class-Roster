@@ -32,7 +32,7 @@ public:
     void PrintAll();
     void PrintAverageDaysInCourse(std::string studentID);
     void PrintInvalidEmails();
-    void PrintByDegreeProgram();
+    void PrintByDegreeProgram(DegreeProgram degreeProgram);
     void resizeRoster();
     DegreeProgram strToEnum(std::string& str);
 };

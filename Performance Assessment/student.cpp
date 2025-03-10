@@ -108,3 +108,7 @@ void Student::Print() const {
     this->GetEmailAddress() << "\t" << this->GetAge() << "\t" << "{" << this->GetDaysInCourse() << "}" <<
     "\t" << this->GetDegreeProgram() << std::endl;
 }
+
+int* Student::GetDaysInCourseArr()  {
+    return this->daysInCourse;
+}

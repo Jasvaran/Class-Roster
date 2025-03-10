@@ -39,6 +39,7 @@ public:
     int GetAge() const;
     std::string GetDaysInCourse() const;
     std::string GetDegreeProgram() const;
+    int* GetDaysInCourseArr();
     
     // Setters
     void SetStudentID(std::string studentID);

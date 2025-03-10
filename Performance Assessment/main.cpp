@@ -37,6 +37,7 @@ int main(int argc, const char * argv[]) {
     std::cout << std::endl << std::endl;
     myRoster->Remove("A5");
     myRoster->PrintAll();
+//    myRoster->PrintByDegreeProgram(DegreeProgram::SECURITY);
     
     
     

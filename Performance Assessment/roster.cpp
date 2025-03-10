@@ -75,15 +75,15 @@ void Roster::PopulateRoster(const std::string dataArr[], size_t size){
         degreeProgram = strToEnum(degreeString);
         
         // create student objects
-        int* daysInCourseArr = new int[3];
-        daysInCourseArr[0] = daysInCourse1;
-        daysInCourseArr[1] = daysInCourse2;
-        daysInCourseArr[2] = daysInCourse3;
-        Student* newStudent = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourseArr, degreeProgram);
-        
+//        int* daysInCourseArr = new int[3];
+//        daysInCourseArr[0] = daysInCourse1;
+//        daysInCourseArr[1] = daysInCourse2;
+//        daysInCourseArr[2] = daysInCourse3;
+//        Student* newStudent = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourseArr, degreeProgram);
+        this->Add(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeProgram);
 
-        this->classRosterArray[i] = newStudent;
-        this->rosterCounter++;
+//        this->classRosterArray[i] = newStudent;
+//        this->rosterCounter++;
 
 
     }
@@ -146,12 +146,18 @@ void Roster::resizeRoster(){
 void Roster::Remove(std::string studentID){
     
     // find the index of ID we want to remove
-    int indexOfID = 0;
+    int indexOfID = NULL;
     
     for (int i = 0; i < rosterCounter; ++i){
         if (this->classRosterArray[i]->GetStudentID() == studentID){
             indexOfID = i;
         }
+
+    }
+    
+    if (!indexOfID){
+        std::cout << "Student with id " << studentID << " not found!" << std::endl;
+        return;
     }
     
     // loop and remove the item and shift the array to the left.
@@ -173,19 +179,29 @@ void Roster::PrintAll(){
 
 
 // ********** TO FIX:***********
-//void Roster::PrintAverageDaysInCourse(std::string studentID){
-//    int indexOfStudent;
-//    int sum = 0;
-//    double avg;
-//    for (int i = 0; i < this->rosterCounter; ++i) {
-//        if (this->classRosterArray[i]->GetStudentID() == studentID) {
-//            indexOfStudent = i;
-//        }
-//    }
+void Roster::PrintAverageDaysInCourse(std::string studentID){
+    int indexOfStudent = NULL;
+    int sum = 0;
+    double avg;
+    for (int i = 0; i < this->rosterCounter; ++i) {
+        if (this->classRosterArray[i]->GetStudentID() == studentID) {
+            indexOfStudent = i;
+        }
+    }
+    
+    int* daysInCoursePtr2 = classRosterArray[indexOfStudent]->GetDaysInCourseArr();
+    
+    
+    for (size_t i = 0; i < 3; ++i) {
+        sum += daysInCoursePtr2[i];
+    }
+    avg = static_cast<double>(sum) / 3;
+    std::cout << avg;
+}
+
+//void Roster::PrintByDegreeProgram(DegreeProgram degreeProgram) {
 //    
-//    for (size_t i = 0; i < 3; ++i) {
-//        
+//    for (size_t i = 0; i < rosterCounter; ++i){
+//        if (this->classRosterArray[i]->GetDegreeProgram() == degreeProgram)
 //    }
-    
-    
 //}
