@@ -8,6 +8,7 @@
 #include "student.hpp"
 #include <iostream>
 #include <iomanip>
+#include <sstream>
 
 Student::Student() {};
 Student::Student (std::string studentID, std::string firstName,
@@ -109,9 +110,31 @@ void Student::SetDegreeProgram(DegreeProgram degreeProgram){
 }
 
 void Student::Print() const {
-    std::cout << this->GetStudentID() << "\t" << this->GetFirstName() << "\t" << this->GetLastName() << "\t" <<
-    this->GetEmailAddress() << "\t" << this->GetAge() << "\t" << "{" << this->GetDaysInCourse() << "}" <<
-    "\t" << this->GetDegreeProgram() << std::endl;
+    
+    std::stringstream ss;
+    std::string firstName;
+    DegreeProgram degreeProgram = this->GetDegreeProgram();
+    ss << std::left << std::setw(5) << this->GetStudentID() << "\t"
+                    << std::setw(12) << this->GetFirstName() << "\t"
+                    << std::setw(12) << this->GetLastName() << "\t"
+                    << std::setw(5) << this->GetAge() << "\t"
+                    << "{" << this->GetDaysInCourse() << "}" <<std::setw(5) <<"\t";
+    
+    if (degreeProgram == DegreeProgram::SECURITY){
+        ss << std::setw(10) << "Security" << std::endl;
+    } else if (degreeProgram == DegreeProgram::NETWORK){
+        ss << std::setw(10) << "Network" << std::endl;
+    } else if (degreeProgram == DegreeProgram::SOFTWARE){
+        ss << std::setw(10) << "Software" <<std::endl;
+    };
+                    
+    std::cout << ss.str();
+    
+   
+    
+//    std::cout << this->GetStudentID() << std::setw(5) << "\t"  << this->GetFirstName() << std::setw(5) << "\t" << this->GetLastName() << "\t" <<
+//    this->GetEmailAddress() << "\t" << this->GetAge() << "\t" << "{" << this->GetDaysInCourse() << "}" <<
+//    "\t" << this->GetDegreeProgram() << std::endl;
 }
 
 int* Student::GetDaysInCourseArr()  {

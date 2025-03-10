@@ -11,6 +11,7 @@
 #include <map>
 #include <stdexcept>
 
+
 Roster::Roster(){
     classRosterArray = new Student*[classRosterSize];
 };
@@ -83,7 +84,7 @@ void Roster::PopulateRoster(const std::string dataArr[], size_t size){
 //        daysInCourseArr[2] = daysInCourse3;
 //        Student* newStudent = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourseArr, degreeProgram);
         this->Add(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeProgram);
-
+        
 //        this->classRosterArray[i] = newStudent;
 //        this->rosterCounter++;
 
@@ -111,7 +112,7 @@ void Roster::Add(std::string studentID, std::string firstName, std::string lastN
     
     // new student dynamically allocates memory and newStudent holds the memory address of the object
     Student* newStudent = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourseArr, degreeProgram);
-    
+
     
     
  
@@ -180,7 +181,6 @@ void Roster::PrintAll(){
 }
 
 
-// ********** TO FIX:***********
 void Roster::PrintAverageDaysInCourse(std::string studentID){
     int indexOfStudent = NULL;
     int sum = 0;
@@ -214,20 +214,30 @@ void Roster::PrintInvalidEmails(){
 
     std::string emailAddress;
     std::string afterLastPeriod;
-    size_t periodLocation;
     
+    
+    
+
     for (size_t i = 0; i < rosterCounter; ++i){
         emailAddress = classRosterArray[i]->GetEmailAddress();
         if (emailAddress.find(" ") != std::string::npos){
-            std::cout << emailAddress << std::endl;
+            std::cout << "Invalid email: " << emailAddress << std::endl;
             
         }
         if (emailAddress.find(".") == std::string::npos){
-            std::cout << emailAddress << std::endl;
+            std::cout << "Invalid email: " << emailAddress << std::endl;
         }
         if (emailAddress.find("@") == std::string::npos){
-            std::cout << emailAddress << std::endl;
+            std::cout << "Invalid email: " << emailAddress << std::endl;
             
         }
     }
+}
+
+int Roster::returnRosterSize(){
+    return this->rosterCounter;
+}
+
+Student** Roster::accessClassRosterArr(){
+    return this->classRosterArray;
 }

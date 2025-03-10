@@ -34,6 +34,8 @@ public:
     void PrintInvalidEmails();
     void PrintByDegreeProgram(DegreeProgram degreeProgram);
     void resizeRoster();
+    int returnRosterSize();
+    Student** accessClassRosterArr();
     DegreeProgram strToEnum(std::string& str);
 };
 
