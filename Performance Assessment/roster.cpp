@@ -16,16 +16,19 @@ Roster::Roster(){
     classRosterArray = new Student*[classRosterSize];
 };
 
+
+
 DegreeProgram Roster::strToEnum(std::string& str){
+    // Utilizes a map to get the enumerator from a str argument.
     std::map<std::string, DegreeProgram> degreeProgramMap = {
         {"SECURITY", DegreeProgram::SECURITY},
         {"NETWORK" , DegreeProgram::NETWORK},
         {"SOFTWARE", DegreeProgram::SOFTWARE}
     };
     
-    auto it = degreeProgramMap.find(str);
-    if (it != degreeProgramMap.end()){
-        return it->second;
+    auto degreeIterator = degreeProgramMap.find(str);
+    if (degreeIterator != degreeProgramMap.end()){
+        return degreeIterator->second;
     } else {
         throw std::invalid_argument(str);
     }
@@ -33,7 +36,8 @@ DegreeProgram Roster::strToEnum(std::string& str){
 }
 
 void Roster::PopulateRoster(const std::string dataArr[], size_t size){
-    
+    // This function parses the dataArr, finds the commas, and splits each string between commas,
+    // and assigns each piece of data to variables.
     
     for (size_t i = 0; i < size; ++i) {
         std::string individualStudent = dataArr[i];
@@ -41,52 +45,49 @@ void Roster::PopulateRoster(const std::string dataArr[], size_t size){
         int age, daysInCourse1, daysInCourse2, daysInCourse3;
         DegreeProgram degreeProgram;
         
-        // find first comma and get studentID
+        // find first comma and get studentID.
         size_t firstCommaLoc = individualStudent.find(",");
         studentID = individualStudent.substr(0, firstCommaLoc);
         
-        // find second comma and get firstName;
+        // find second comma and get firstName.
         size_t secondCommaLoc = individualStudent.find(",", firstCommaLoc + 1);
         firstName = individualStudent.substr(firstCommaLoc + 1, secondCommaLoc - firstCommaLoc - 1);
         
-        // find third comma and get lastName;
+        // find third comma and get lastName.
         size_t thirdCommaLoc = individualStudent.find(",", secondCommaLoc + 1);
         lastName = individualStudent.substr(secondCommaLoc + 1, thirdCommaLoc - secondCommaLoc - 1);
         
-        // find fourth comma and get emailAddress
+        // find fourth comma and get emailAddress.
         size_t fourthCommaLoc = individualStudent.find(",", thirdCommaLoc + 1);
         emailAddress = individualStudent.substr(thirdCommaLoc + 1, fourthCommaLoc - thirdCommaLoc - 1);
         
-        // find fifth comma and get age
+        // find fifth comma and get age.
         size_t fifthCommaLoc = individualStudent.find(",", fourthCommaLoc + 1);
         age = std::stoi(individualStudent.substr(fourthCommaLoc + 1, fifthCommaLoc - fourthCommaLoc - 1));
         
+        // find sixth comma and get first day in course digit.
         size_t sixthCommaLoc = individualStudent.find(",", fifthCommaLoc + 1);
         daysInCourse1 = std::stoi(individualStudent.substr(fifthCommaLoc + 1, sixthCommaLoc - fifthCommaLoc - 1));
         
+        // find seventh comma and get second day in course digit.
         size_t seventhCommaLoc = individualStudent.find(",", sixthCommaLoc + 1);
         daysInCourse2 = std::stoi(individualStudent.substr(sixthCommaLoc + 1, seventhCommaLoc - sixthCommaLoc - 1));
         
+        // find 8th comma and get third day in course digit.
         size_t eighthCommaLoc = individualStudent.find(",", seventhCommaLoc + 1);
         daysInCourse3 = std::stoi(individualStudent.substr(seventhCommaLoc + 1, eighthCommaLoc - seventhCommaLoc - 1));
         
-        // STRING TO ENUM
+        // Take the degree program string and pass to strToEnum which returns the enumerator.
         std::string degreeString;
         degreeString = individualStudent.substr(eighthCommaLoc + 1);
-        
- 
+
         degreeProgram = strToEnum(degreeString);
         
-        // create student objects
-//        int* daysInCourseArr = new int[3];
-//        daysInCourseArr[0] = daysInCourse1;
-//        daysInCourseArr[1] = daysInCourse2;
-//        daysInCourseArr[2] = daysInCourse3;
-//        Student* newStudent = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourseArr, degreeProgram);
+ 
+        // Add each student to the roster
         this->Add(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeProgram);
         
-//        this->classRosterArray[i] = newStudent;
-//        this->rosterCounter++;
+
 
 
     }
@@ -95,6 +96,7 @@ void Roster::PopulateRoster(const std::string dataArr[], size_t size){
 
 void Roster::Add(std::string studentID, std::string firstName, std::string lastName, std::string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeProgram){
     
+    // Determine if classRosterArray if full. If its full, we resize it.
     
     if (this->rosterCounter == this->classRosterSize) {
         std::cout << "resizing roster prior to adding" << std::endl;
@@ -102,6 +104,7 @@ void Roster::Add(std::string studentID, std::string firstName, std::string lastN
 
     }
     
+    // storing the days in course into an array and using a ptr to point to it.
     int* daysInCourseArr = new int[3];
     daysInCourseArr[0] = daysInCourse1;
     daysInCourseArr[1] = daysInCourse2;
@@ -110,12 +113,12 @@ void Roster::Add(std::string studentID, std::string firstName, std::string lastN
     
     
     
-    // new student dynamically allocates memory and newStudent holds the memory address of the object
+    // new student dynamically allocates memory and newStudent is a pointer that holds the memory address of the object
     Student* newStudent = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourseArr, degreeProgram);
 
     
     
- 
+    // Add the student to the array and increment rosterCounter to keep track of array size.
     this->classRosterArray[rosterCounter] = newStudent;
     this->rosterCounter++;
     
@@ -135,10 +138,11 @@ void Roster::resizeRoster(){
         newArr[i] = classRosterArray[i];
     }
     
-    // Here I am deleting the old array from memory;
+    // Delete the old array from memory.
     delete[] classRosterArray;
     
-    //reassigning the classRosterArray pointer to new array of student pointers;
+    // reassigning the classRosterArray pointer to the new array of student pointers
+    // and changing classRosterSize to the new size of the array.
     this->classRosterArray = newArr;
     this->classRosterSize = newSize;
     
@@ -148,9 +152,11 @@ void Roster::resizeRoster(){
 
 void Roster::Remove(std::string studentID){
     
-    // find the index of ID we want to remove
+
     int indexOfID = NULL;
+    std::cout << "Removing " << studentID << std::endl;
     
+    // Loop through classRosterArray to find if studentID exists.
     for (int i = 0; i < rosterCounter; ++i){
         if (this->classRosterArray[i]->GetStudentID() == studentID){
             indexOfID = i;
@@ -158,6 +164,7 @@ void Roster::Remove(std::string studentID){
 
     }
     
+    // If not found, displays not found message.
     if (!indexOfID){
         std::cout << "Student with id " << studentID << " not found!" << std::endl;
         return;
@@ -198,7 +205,7 @@ void Roster::PrintAverageDaysInCourse(std::string studentID){
         sum += daysInCoursePtr2[i];
     }
     avg = static_cast<double>(sum) / 3;
-    std::cout << avg;
+    std::cout << studentID << ": " << avg;
 }
 
 void Roster::PrintByDegreeProgram(DegreeProgram degreeProgram) {

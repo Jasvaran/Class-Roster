@@ -44,19 +44,6 @@ DegreeProgram Student::GetDegreeProgram() const {
 
     return this->degreeProgram;
     
-    
-    
-    //    switch (this->degreeProgram) {
-//        case DegreeProgram::SECURITY:
-//            return "SECURITY";
-//            break;
-//        case DegreeProgram::NETWORK:
-//            return "NETWORK";
-//        case DegreeProgram::SOFTWARE:
-//            return "SOFTWARE";
-//        default:
-//            break;
-//    }
 }
 
 int Student::GetAge() const {
@@ -131,10 +118,6 @@ void Student::Print() const {
     std::cout << ss.str();
     
    
-    
-//    std::cout << this->GetStudentID() << std::setw(5) << "\t"  << this->GetFirstName() << std::setw(5) << "\t" << this->GetLastName() << "\t" <<
-//    this->GetEmailAddress() << "\t" << this->GetAge() << "\t" << "{" << this->GetDaysInCourse() << "}" <<
-//    "\t" << this->GetDegreeProgram() << std::endl;
 }
 
 int* Student::GetDaysInCourseArr()  {
